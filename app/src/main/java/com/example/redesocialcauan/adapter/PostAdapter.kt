@@ -1,4 +1,4 @@
-package com.example.redesocialcauan
+package com.example.redesocialcauan.adapter
 
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.redesocialcauan.R
 
 class PostAdapter(private val posts: MutableList<Post>) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 

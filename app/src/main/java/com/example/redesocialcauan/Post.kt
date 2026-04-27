@@ -10,15 +10,22 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.redesocialcauan.databinding.ActivityNovoPostBinding
+import com.example.redesocialcauan.util.Base64Converter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.firestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.util.Locale
 
-class NovoPost : AppCompatActivity() {
+class Post : AppCompatActivity() {
 
     private lateinit var binding: ActivityNovoPostBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -72,21 +79,34 @@ class NovoPost : AppCompatActivity() {
     }
 
     private fun obterLocalizacao() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return
         }
-        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+
+        // Usando CoroutineScope para rodar a função de forma assíncrona
+        CoroutineScope(Dispatchers.Main).launch {
+            val location = fusedLocationClient.lastLocation.await()  // Obtendo a localização de forma assíncrona
+
             if (location != null) {
                 try {
-                    val geocoder = Geocoder(this, Locale.getDefault())
-                    val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                    val geocoder = Geocoder(this@Post, Locale.getDefault())
+                    // Executar a geocodificação em uma thread de fundo
+                    val addresses = withContext(Dispatchers.IO) {
+                        geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                    }
+
                     if (!addresses.isNullOrEmpty()) {
                         val address = addresses[0]
-                        cidadeAtual = address.locality ?: address.subAdminArea ?: "Desconhecida"
+                        cidadeAtual = address.locality ?: address.subAdminArea ?: address.adminArea ?: "Desconhecida"
                         binding.txtLocation.text = "Localização: $cidadeAtual"
+                    } else {
+                        binding.txtLocation.text = "Localização: Nenhum endereço encontrado"
                     }
+                } catch (e: IOException) {
+                    binding.txtLocation.text = "Localização: Erro ao acessar o serviço de geolocalização"
                 } catch (e: Exception) {
-                    binding.txtLocation.text = "Localização: Erro ao obter cidade"
+                    binding.txtLocation.text = "Localização: Erro desconhecido"
                 }
             } else {
                 binding.txtLocation.text = "Localização: Não encontrada"

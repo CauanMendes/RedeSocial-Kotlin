@@ -1,4 +1,4 @@
-package com.example.redesocialcauan
+package com.example.redesocialcauan.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

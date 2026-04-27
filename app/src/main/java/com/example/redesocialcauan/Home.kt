@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.redesocialcauan.adapter.Post
+import com.example.redesocialcauan.adapter.PostAdapter
 import com.example.redesocialcauan.databinding.ActivityHomeBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.DocumentSnapshot
@@ -54,7 +56,7 @@ class Home : AppCompatActivity() {
         }
 
         binding.btnNovoPost.setOnClickListener {
-            val telaNovoPost = Intent(this, NovoPost::class.java)
+            val telaNovoPost = Intent(this, Post::class.java)
             startActivity(telaNovoPost)
         }
 

@@ -8,7 +8,7 @@ import com.example.redesocialcauan.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
 
-class MainActivity : AppCompatActivity() {
+class Login : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             autenticarUsuario()
         }
         binding.txtCriarConta.setOnClickListener {
-            val cadastro = Intent(this@MainActivity, Cadastro::class.java)
+            val cadastro = Intent(this@Login, Cadastro::class.java)
             startActivity(cadastro)
         }
     }
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             .signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task -> 
                 if (task.isSuccessful) {
-                    val telaHome = Intent(this@MainActivity, Home::class.java)
+                    val telaHome = Intent(this@Login, Home::class.java)
                     startActivity(telaHome)
                     finish()
                 } else {
