@@ -51,6 +51,8 @@ class CreatePostActivity : AppCompatActivity() {
 
         localizacaoHelper = LocalizacaoHelper(this)
 
+        binding.btnVoltar.setOnClickListener { finish() }
+
         binding.imgPost.setOnClickListener {
             galeria.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }

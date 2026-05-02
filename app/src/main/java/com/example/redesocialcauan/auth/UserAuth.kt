@@ -56,6 +56,8 @@ class UserAuth {
             }
     }
 
+    fun logoff() = firebaseAuth.signOut()
+
     fun alterarSenha(
         novaSenha: String,
         onResult: (Boolean) -> Unit

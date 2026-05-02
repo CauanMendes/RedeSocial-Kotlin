@@ -7,6 +7,15 @@
     android:gravity="center_horizontal"
     android:padding="24dp">
 
+    <ImageButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="start"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_revert"
+        android:contentDescription="Voltar"/>
+
     <ImageView
         android:id="@+id/profileImage"
         android:layout_width="120dp"
@@ -50,5 +59,12 @@
         android:layout_height="wrap_content"
         android:text="SALVAR"
         android:layout_marginTop="40dp"/>
+
+    <Button
+        android:id="@+id/btnLogoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAIR"
+        android:layout_marginTop="16dp"/>
 
 </LinearLayout>

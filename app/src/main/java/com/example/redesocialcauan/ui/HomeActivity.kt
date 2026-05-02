@@ -31,7 +31,22 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        postAdapter = PostAdapter(mutableListOf())
+        postAdapter = PostAdapter(
+            posts = mutableListOf(),
+            currentUserEmail = userAuth.emailUsuarioAtual(),
+            onDelete = { post, position ->
+                postDAO.excluir(
+                    id = post.id,
+                    onSuccess = {
+                        postAdapter.removeAt(position)
+                        Toast.makeText(this, "Post excluído", Toast.LENGTH_SHORT).show()
+                    },
+                    onError = {
+                        Toast.makeText(this, "Erro ao excluir post", Toast.LENGTH_SHORT).show()
+                    }
+                )
+            }
+        )
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = postAdapter
 

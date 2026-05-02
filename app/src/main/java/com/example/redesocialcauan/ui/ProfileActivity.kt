@@ -1,5 +1,6 @@
 package com.example.redesocialcauan.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
@@ -32,6 +33,16 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         carregarPerfil()
+
+        binding.btnVoltar.setOnClickListener { finish() }
+
+        binding.btnLogoff.setOnClickListener {
+            userAuth.logoff()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
 
         binding.btnChangePhoto.setOnClickListener {
             galeria.launch(

@@ -65,6 +65,16 @@ class PostDAO {
             .addOnFailureListener { onError() }
     }
 
+    fun excluir(
+        id: String,
+        onSuccess: () -> Unit,
+        onError: () -> Unit
+    ) {
+        collection.document(id).delete()
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener { onError() }
+    }
+
     fun publicar(
         autor: String,
         texto: String,
