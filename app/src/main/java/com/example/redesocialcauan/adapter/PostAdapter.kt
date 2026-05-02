@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.redesocialcauan.R
+import com.example.redesocialcauan.model.Post
 
 class PostAdapter(private val posts: MutableList<Post>) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
@@ -32,11 +33,7 @@ class PostAdapter(private val posts: MutableList<Post>) : RecyclerView.Adapter<P
 
         try {
             val decodedBytes = Base64.decode(post.imagemBase64, Base64.DEFAULT)
-            var bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
-
-            // Tratamento simplificado; idealmente Base64Converter cuidaria de tudo
-            // mas Base64Converter já pode ter a função stringToDrawable?
-            // Vamos usar apenas BitmapFactory para converter
+            val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
             holder.imgPost.setImageBitmap(bitmap)
         } catch (e: Exception) {
             holder.imgPost.setImageResource(android.R.drawable.ic_menu_gallery)
@@ -57,13 +54,3 @@ class PostAdapter(private val posts: MutableList<Post>) : RecyclerView.Adapter<P
         notifyItemRangeRemoved(0, size)
     }
 }
-
-data class Post(
-    val id: String = "",
-    val autor: String = "",
-    val cidade: String = "",
-    val texto: String = "",
-    val imagemBase64: String = "",
-    @com.google.firebase.firestore.ServerTimestamp
-    var timestamp: java.util.Date? = null
-)

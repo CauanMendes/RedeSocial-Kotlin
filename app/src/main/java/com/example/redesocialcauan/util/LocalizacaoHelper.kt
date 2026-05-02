@@ -1,4 +1,4 @@
-package br.com.canarinho.redesocial.util
+package com.example.redesocialcauan.util
 
 import android.Manifest
 import android.content.Context

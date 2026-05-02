@@ -1,6 +1,5 @@
 package com.example.redesocialcauan.model
 
-
 data class Post(
     val id: String = "",
     val autor: String = "",

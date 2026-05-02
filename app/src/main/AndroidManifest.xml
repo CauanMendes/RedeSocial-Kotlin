@@ -16,19 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RedeSocialCauan">
         <activity
-            android:name=".Post"
+            android:name=".ui.CreatePostActivity"
             android:exported="false" />
         <activity
-            android:name=".Perfil"
+            android:name=".ui.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Cadastro"
+            android:name=".ui.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".ui.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".ui.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
