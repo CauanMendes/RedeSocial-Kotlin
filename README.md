@@ -6,9 +6,9 @@ Aplicativo Android de rede social escrito em Kotlin. Permite cadastro/login, cri
 
 **Vídeo do app em uso:**
 
-<video src="https://github.com/CauanMendes/RedeSocial-Kotlin/raw/master/Screen_recording_20260502_174613.webm" controls width="320"></video>
+<video src="https://github.com/CauanMendes/RedeSocial-Kotlin/raw/master/demo.mp4" controls width="320"></video>
 
-> Caso o player não carregue, [baixe o vídeo aqui](Screen_recording_20260502_174613.webm).
+> Caso o player não carregue, [baixe o vídeo aqui](demo.mp4).
 
 **Explicação do código (YouTube):** [https://youtu.be/_2mj0qhJe5E](https://youtu.be/_2mj0qhJe5E)
 
