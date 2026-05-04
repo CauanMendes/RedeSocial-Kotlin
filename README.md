@@ -2,6 +2,16 @@
 
 Aplicativo Android de rede social escrito em Kotlin. Permite cadastro/login, criação de posts com imagem e localização, feed paginado com busca por cidade e edição de perfil com foto.
 
+## Demonstração
+
+**Vídeo do app em uso:**
+
+<video src="https://github.com/CauanMendes/RedeSocial-Kotlin/raw/master/Screen_recording_20260502_174613.webm" controls width="320"></video>
+
+> Caso o player não carregue, [baixe o vídeo aqui](Screen_recording_20260502_174613.webm).
+
+**Explicação do código (YouTube):** [https://youtu.be/_2mj0qhJe5E](https://youtu.be/_2mj0qhJe5E)
+
 ## Funcionalidades
 
 - **Cadastro e login** via Firebase Authentication (e-mail/senha).
